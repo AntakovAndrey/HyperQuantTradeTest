@@ -8,3 +8,6 @@ BitfinexRESTClient/obj
 
 BitfinexWebSocketClient/bin
 BitfinexWebSocketClient/obj
+
+BitfinexCore/bin
+BitfinexCore/obj
