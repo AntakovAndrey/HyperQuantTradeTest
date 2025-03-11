@@ -1,1 +1,10 @@
 .idea/
+
+BitfinexConnector/bin
+BitfinexConnector/obj
+
+BitfinexRESTClient/bin
+BitfinexRESTClient/obj
+
+BitfinexWebSocketClient/bin
+BitfinexWebSocketClient/obj
