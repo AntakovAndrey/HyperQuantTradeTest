@@ -1,6 +1,4 @@
-﻿using System.Text;
-using System.Text.Json.Nodes;
-using System.Text.RegularExpressions;
+﻿using System.Text.Json.Nodes;
 using BitfinexCore;
 using RestSharp;
 
@@ -9,14 +7,14 @@ namespace BitfinexRESTClient;
 public class RestBitfinexClient:IRestBitfinexClient
 {
     private const string ApiUrl = "https://api-pub.bitfinex.com/v2/";
-    public Task<IEnumerable<Trade>> GetNewTradesAsync(string pair, int maxCount)
+    public async Task<IEnumerable<Trade>> GetNewTradesAsync(string pair, int maxCount)
     {
         string finalUrl = $"{ApiUrl}trades/{pair}/hist?limit={maxCount}";
         var option = new RestClientOptions(finalUrl);
         var client = new RestClient(option);
         var request = new RestRequest("");
         request.AddHeader("accept", "application/json");
-        var response = client.GetAsync(request).Result;
+        var response = await client.GetAsync(request);
         var jsonResult = JsonObject.Parse(response.Content);
         List<Trade> trades = new List<Trade>();
         foreach (var tradeItem in jsonResult.AsArray())
@@ -32,7 +30,7 @@ public class RestBitfinexClient:IRestBitfinexClient
                 }
             );
         }
-        return Task.FromResult(trades.AsEnumerable());
+        return trades.AsEnumerable();
     }
 
     public Task<IEnumerable<Candle>> GetCandleSeriesAsync(string pair, int periodInSec, DateTimeOffset? from, DateTimeOffset? to = null, long? count=0)
