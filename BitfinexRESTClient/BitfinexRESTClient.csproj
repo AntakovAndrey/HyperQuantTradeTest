@@ -10,4 +10,8 @@
       <ProjectReference Include="..\BitfinexCore\BitfinexCore.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="RestSharp" Version="112.1.1-alpha.0.4" />
+    </ItemGroup>
+
 </Project>
